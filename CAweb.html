@@ -1,65 +1,65 @@
----
-layout: base
-permalink: /
----
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="main.css">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Bilbo+Swash+Caps|Open+Sans" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>Colorism and AI Bias</title>
+  </head>
 
-{% comment %} Get the next stream. {% endcomment %}
-{% include 1-tools/sort-videos.html videos=site.Streams future=true reverse=true %}
-{% assign nextStream = out_sortedVideos | where_exp: 'stream', 'stream.date >= site.time' | first %}
+  <body>
+    <header>
+      <h1> <a href="index.html">Colorism and AI Bias</a></h1>
+    </header>
 
-{% comment %} Get latest coding challenges. {% endcomment %}
-{% include 1-tools/sort-videos.html videos=site.CodingChallenges reverse=true %}
-
-{% comment %} Use the latest coding challenge if a stream hasn't been scheduled yet. {% endcomment %}
-{% if nextStream == null %}
-  {% assign offset = 1 %}
-  {% assign nextStream = out_sortedVideos | first %}
-{% else %}
-  {% assign offset = 0 %}
-{% endif %}
-
-{% assign featuredVideos = '' | split: '' %}
-
-{% comment %} Add latest coding challenges to featured videos array. {% endcomment %}
-{% for challenge in out_sortedVideos limit:2 offset:offset %}
-  {% assign featuredVideos = featuredVideos | push: challenge %}
-{% endfor %}
-
-{% comment %} Get lastest stream and add it to the featured videos array. {% endcomment %}
-{% include 1-tools/sort-videos.html videos=site.Streams reverse=true %}
-{% assign featuredVideos = featuredVideos | push: out_sortedVideos[0] %}
-
-<div class="landing-page">
-  <div class="welcome-message">
-    <div class="learn-to-code">
-      <h1>Learn to Code</h1>
-      <p>Daniel Shiffman makes videos on how to code!</p>
-      <p>The Coding Train features "creative coding" video tutorials with new ones released every week.</p>
-      <div class="ctas">
-        <a href="{{ site.links.youtube }}?sub_confirmation=1" target="_blank" class="youtube">Subscribe on YouTube</a>
-        <a href="{{ site.links.patreon }}" target="_blank" class="patreon">Become a Patron</a>
-      </div>
+    <div class="to_top">
+      <a href="#top" id="button">Back to Top</a>
     </div>
 
-    {% include 3-modules/video-card.html video=nextStream %}
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="stats.html">Statistics</a></li>
+        <li><a href="tests.html">Testimonials</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li class="current_page"><a href="about.html">About Us</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+    </nav>
 
-  </div>
+    <h2>About Us</h2>
+    <div class="body">
+      <div id="group_photo">
+        <!-- <p>[INSERT GROUP PHOTO HERE]</p> -->
+        <img id="image" src="./carousel_images/group1.JPG" alt="a picture of the group">
+      </div>
+      <div class="arrows">
+        <i class="fas fa-angle-left" onclick="lastPic()"></i>
+        <i class="fas fa-angle-right" onclick="nextPic()"></i>
+      </div>
+      <div class="about">
+        <div class="column" id="left">
+          <p>I’m <em>Kyra Parris</em>, I’m sixteen years old, and I am a rising junior at Cushing Academy, a boarding school in Ashburnham, Massachusetts. I have always been interested in technology and coding, but it was not until I joined Girls Who Code that i began to think of programming as a possible career option. I am very involved with social justice work at my school, especially when the topic of colorism comes up. It only made sense for me to combine two of my interests into this one final project. </p>
+          <p><i class="fab fa-instagram"></i> @kyra.jay</p>
+          <p><i class="fab fa-snapchat-ghost"></i> @xsimplykjx</p>
+          </br>
+          <p>My name is <em>Venessa Okoroanyanwu</em>. I am fifteen and I am a rising junior at the Canterbury School in New Milford, CT. I did Girls Who Code this summer because I wanted to learn more about the behind the scenes of technology. I became interested in the topic of colorism in relation to technology after watching a video made by Joy Buolamwini, and that interest lead to the making of this website.</p>
+          <p><i class="fab fa-snapchat-ghost"></i> @lock.nessa</p>
+        </div>
+        <div class="column" id="right">
+          <p>I’m <em>Jennah Shabazz</em>, I’m seventeen, I attend Science Park High School and am a rising senior. I decided to do Girls Who Code because when my my approached me with the idea of it I wasn’t into at first but when she started to explain what they do and why they do it I thought that it would be cool to be involved so i sent in my application. I decided to join the project about colorism because it’s a big issue in america but not too many people notice it or if they do they ignore it and hope it fixes itself.</p>
+          <p><i class="fab fa-instagram"></i> @lavvish.jay</p>
+          <p><i class="fab fa-snapchat-ghost"></i> @jayswagger987</p>
+          </br>
+          <p>My name is <em>Brianna Rodriguez</em>, I’m seventeen and I am a rising junior at Donald Payne School of Technology. I decided to do Girls Who Code because I’ve wanted to pursue a career in technology since eighth grade and I really enjoy the feeling of sisterhood with young girls. Colorism is a topic that isn’t discussed often when it should be, especially in the Technology industry today. So if I can combine my passions for coding and equal rights to change that, why not! Someone has to speak up if we want this to change and i’m proud to be doing this with these amazing ladies.</p>
+          <p><i class="fab fa-instagram"></i> @briannar227</p>
+        </div>
+      </div>
 
-  <h2>Latest Videos</h2>
-  <div class="featured-videos">
-    {% include 3-modules/video-list.html sortedVideos=featuredVideos %}
-    <a href="{{ site.links.youtube }}" target="_blank" class="more-videos">Watch more videos</a>
-  </div>
+    </div>
 
-  <h2>Support The Coding Train</h2>
-  <div class="support">
-    {% capture patreonLogo %}{% include 4-vector-graphics/patreon.svg %}{% endcapture %}
-    {% include 3-modules/hero-item.html image=patreonLogo title='Consider supporting?' content='Support The Coding Train on Patreon and get some awesome rewards!' url=site.links.patreon cta='Become a Patron' class='patreon' %}
-
-    {% capture merchStoreImage %}<img alt='The Coding Train Merchandise Store' src="{{ '/assets/images/merch-store.png' | relative_url }}" />{% endcapture %}
-    {% include 3-modules/hero-item.html image=merchStoreImage title='Want more of The Coding Train in your life?' content='Visit the merch store and get some shirts, mugs and more!' url=site.links.merch cta='Get some merch' class='merch-store' %}
-
-    {% capture amazonStoreImage %}<img alt='The Coding Train Amazon Store' src="{{ '/assets/images/amazon-store.png' | relative_url }}" />{% endcapture %}
-    {% include 3-modules/hero-item.html image=amazonStoreImage title="Haven't learned enough?" content='Read one of the books featured on The Coding Train!' url=site.links.amazon cta='Start reading' class='amazon-store' %}
-  </div>
-</div>
+  </body>
+  <script type="text/javascript" src="main.js"></script>
+</html>
