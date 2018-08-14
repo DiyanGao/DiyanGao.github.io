@@ -1,5 +1,5 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> CA peer-tutoring </title>
+CA peer-tutoring
     </head>
